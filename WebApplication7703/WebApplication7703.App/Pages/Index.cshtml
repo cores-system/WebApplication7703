@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<h1>Issues 7703</h1>
+
+Open in new tab <a href="/home/myip" target="_blank">/home/myip</a> <br />
+
+List of IP tabs open:
+@IPs
+
+
+@functions {
+    string IPs = string.Empty;
+
+    protected override void OnInit()
+    {
+        WebApplication7703.Shared.CliEventTo.OnRequest += (ip) =>
+        {
+            IPs += ip + "<br />";
+            StateHasChanged();
+        };
+
+        base.OnInit();
+    }
+}
